@@ -1,6 +1,6 @@
 # Тестовое задание
 
-- Архитектура Feature0Sliced Design
+- Архитектура Feature-Sliced Design
 - Взаимодействие с Pinia Через Pinia Colada
 - Самодельная имплементация useInfiniteQuery из @tanstack/vue-query
 - Поиск по категориям работает в типую и нужно вручную нажимать кнопку загрузки, в All работает как надо через API
