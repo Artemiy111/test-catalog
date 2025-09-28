@@ -5,6 +5,16 @@ import { useRouteQuery } from '@vueuse/router'
 const router = useRouter()
 const route = useRoute()
 const search = useRouteQuery('search', '')
+
+const onSearch = (e: Event) => {
+  router.push({
+    path: '/',
+    query: {
+      ...route.query,
+      search: (e.target as HTMLInputElement).value,
+    },
+  })
+}
 </script>
 
 <template>
@@ -19,7 +29,7 @@ const search = useRouteQuery('search', '')
         size="md"
         variant="outline"
         placeholder="Search..."
-        @change="(e) => router.push({ path: '/', query: { ...route.query, search: (e.target as HTMLInputElement).value } })"
+        @change="onSearch"
       />
     </UHeader>
 

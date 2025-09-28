@@ -13,8 +13,24 @@ export const getPaginatedProductsResponseSchema = z.object({
 export type GetPaginatedProductsResponse = z.infer<typeof getPaginatedProductsResponseSchema>
 
 export const products = {
-  getPaginatedProducts: async ({ limit, skip }: { limit: number, skip: number }) => {
-    const res = await ofetch('/products', {
+  getPaginatedProducts: async ({ limit, skip, search }: {
+    limit: number
+    skip: number
+    search: string
+  }) => {
+    const res = await ofetch('/products/search', {
+      query: { limit, skip, q: search },
+    })
+    const validated = getPaginatedProductsResponseSchema.parse(res)
+    return validated
+  },
+
+  getPaginatedProductsByCategory: async ({ categorySlug, limit, skip }: {
+    categorySlug: string
+    limit: number
+    skip: number
+  }) => {
+    const res = await ofetch(`/products/category/${categorySlug}`, {
       query: { limit, skip },
     })
     const validated = getPaginatedProductsResponseSchema.parse(res)
